@@ -18,5 +18,11 @@ pipeline {
                 sh 'conan build . -if install'
             }
         }
+        stage('Artifact') {
+            steps {
+                echo 'Generating output..'
+                archiveArtifacts 'build/DisplayImage'
+            }
+        }
     }
 }
