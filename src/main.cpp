@@ -136,11 +136,11 @@ cv::Point transform(cv::Vec3d vertex, cv::Matx44d cam, cv::Matx44d proj, cv::Siz
     return cv::Point(x, y);
 }
 
-int main()
+int main(int argc, char *argv[])
 {
-    cv::Mat img = cv::imread("field.png", cv::IMREAD_COLOR);
+    cv::Mat img = cv::imread(argv[1], cv::IMREAD_COLOR);
     if (img.empty()) {
-        std::cout << "Could not read the image: " << "E:\\tennisAnalysis\\field.png" << std::endl;
+        std::cout << "Could not read the image: " << argv[1] << std::endl;
         return 1;
     }
     cv::Mat img2;
@@ -347,22 +347,7 @@ int main()
     cv::normalize(values, values, 1.0, 0.0, cv::NORM_MINMAX);
     cv::imshow("MAT", values);
     
-    cv::waitKey(0);
-    cv::waitKey(0);
-    cv::waitKey(0);
-    cv::waitKey(0);
-    cv::waitKey(0);
-    cv::waitKey(0);
-    cv::waitKey(0);
-    cv::waitKey(0);
-    cv::waitKey(0);
-    cv::waitKey(0);
-    cv::waitKey(0);
-    cv::waitKey(0);
-    cv::waitKey(0);
-    cv::waitKey(0);
-    cv::waitKey(0);
-    cv::waitKey(0);
-    cv::waitKey(0);
+    while (cv::waitKey(0) != 27);
+
     return 0;
 }
