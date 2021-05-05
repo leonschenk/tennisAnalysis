@@ -1,0 +1,22 @@
+pipeline {
+    agent {
+        dockerfile {
+            dir '.jenkins'
+            additionalBuildArgs  '-t klaasafentoe/jenkins-agent-conan-in-docker:latest'
+        }
+    }
+    stages {
+        stage('Install') {
+            steps {
+                echo 'Installing conan dependencies..'
+                sh 'conan install . -if install'
+            }
+        }
+        stage('Build') {
+            steps {
+                echo 'Building conan project..'
+                sh 'conan build . -if install'
+            }
+        }
+    }
+}
