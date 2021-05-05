@@ -1,8 +1,10 @@
 FROM jenkins/agent:latest
 
-RUN sudo apt update && sudo apt install python3 python3-pip
-
-RUN pip3 install ninja meson conan
+USER root
+RUN apt update && apt install python3 python3-pip
 
 # tennisAnalysis requirements
-RUN sudo apt update && sudo apt install libgtk-2.0dev
+RUN apt update && apt install libgtk-2.0dev
+
+USER jenkins
+RUN pip3 install ninja meson conan
