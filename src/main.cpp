@@ -346,8 +346,6 @@ int main(int argc, char *argv[])
     }
     cv::normalize(values, values, 1.0, 0.0, cv::NORM_MINMAX);
     cv::imshow("MAT", values);
-    
     while (cv::waitKey(0) != 27);
-
     return 0;
 }

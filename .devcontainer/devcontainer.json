@@ -8,28 +8,30 @@
 	"runArgs": [ "--cap-add=SYS_PTRACE", "--security-opt", "seccomp=unconfined"],
 
 	"settings": { 
-		"terminal.integrated.shell.linux": "/bin/bash",
+		"terminal.integrated.defaultProfile.linux": "/bin/bash",
 		"python.pythonPath": "/usr/bin/python3",
-		"remoteX11.display": "host.docker.internal:0.0",
+		"remoteX11.display": 0,
+		"remoteX11.SSH.enable": false,
+		"remoteX11.WSL.enable": false,
 		"C_Cpp.vcpkg.enabled": false,
 		"C_Cpp.loggingLevel": "Information",
 		"C_Cpp.default.cppStandard": "c++11",
 		"C_Cpp.default.cStandard": "c11",
-		"C_Cpp.default.compilerPath": "/usr/bin/c++",
+//		"C_Cpp.default.compilerPath": "/usr/bin/c++",
 		"C_Cpp.default.compileCommands": "${workspaceFolder}/build/compile_commands.json",
-		"C_Cpp.default.intelliSenseMode": "linux-gcc-x64"
+//		"C_Cpp.default.intelliSenseMode": "linux-gcc-x64"
 	},
 
 	// Add the IDs of extensions you want installed when the container is created.
 	"extensions": [
-		"ms-vscode.cpptools",
-		"jbenden.c-cpp-flylint",
-		"ms-toolsai.jupyter",
-		"ms-python.python",
-		"surajbarkale.ninja",
-		"asabil.meson",
-		"disroop.conan",
-		"spadin.remote-x11"
+		"ms-vscode.cpptools",    // tools for c++ development
+		"jbenden.c-cpp-flylint", // cppcheck
+		"ms-toolsai.jupyter",    // nodig voor python
+		"ms-python.python",      // tools for python development
+		"surajbarkale.ninja",    // ninja build tool syntax highlighting
+		"asabil.meson",          // meson project support
+		"disroop.conan",         // conan project support
+		"spadin.remote-x11"      // x11 forwarding naar host
 	],
 
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
