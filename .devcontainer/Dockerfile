@@ -7,7 +7,8 @@ RUN apt update && apt -y install --no-install-recommends python3 python3-setupto
 # install gcc
 RUN apt update && apt -y install --no-install-recommends mingw-w64
 
-# install libgtk dependency
-#RUN apt-get update && apt-get -y install --no-install-recommends libgtk2.0-dev
+COPY conan/profiles/* /home/vscode/.conan/profiles/
 
-RUN pip3 install ninja meson conan
+# install conan
+RUN git clone https://github.com/conan-io/conan.git conan_src && cd conan_src && python3 -m pip install -e .
+
