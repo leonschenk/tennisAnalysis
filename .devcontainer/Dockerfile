@@ -6,9 +6,11 @@ RUN apt update && apt -y install --no-install-recommends python3 python3-setupto
 
 # install gcc
 RUN apt update && apt -y install --no-install-recommends mingw-w64
+RUN apt update && apt -y install cmake pkg-config
 
-COPY conan/profiles/* /home/vscode/.conan/profiles/
+# setup default profile
+COPY --chown=vscode:vscode conan/profiles/* /home/vscode/.conan/profiles/
 
 # install conan
-RUN git clone https://github.com/conan-io/conan.git conan_src && cd conan_src && python3 -m pip install -e .
+RUN git clone https://github.com/leonschenk/conan.git conan_src && cd conan_src && python3 -m pip install -e .
 

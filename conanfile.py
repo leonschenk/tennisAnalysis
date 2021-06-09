@@ -8,11 +8,9 @@ class TennisAnalysisFile(ConanFile):
     version = "1.0.0"
     generators = ["PkgConfig", "MesonToolchain"]
     requires = "opencv/4.5.2"
+    build_requires = "meson/0.58.1"
     settings = "os", "compiler", "arch", "build_type"
     exports_sources = "src/*"
-
-    def init(self):
-        self.build_policy = "missing"
 
     def configure(self):
         self.options["opencv"].with_openexr = False
@@ -22,11 +20,13 @@ class TennisAnalysisFile(ConanFile):
         self.folders.source = ""
         self.folders.build = "build"
         self.folders.generators = os.path.join(self.folders.build, "generators")
-        self.folders.package = os.path.join(self.folders.build, "package")
+        self.folders.package = "package"
+        
+        self.cpp.build.bindirs = ["."]
 
     def build(self):
         meson = Meson(self, build_folder=None)
-        meson.configure()
+        meson.configure(source_folder="src")
         meson.build()
 
     def package(self):
